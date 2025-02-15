@@ -4,7 +4,7 @@
 using namespace std;
 
 template <typename Container>
-void Print(const Container container, const string str) {
+void Print(Container container,string str) {
     bool indicator = true;
     for (auto element : container) {
         if (!indicator) {
