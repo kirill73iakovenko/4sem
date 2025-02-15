@@ -5,10 +5,10 @@
 using namespace std;
 
 
-bool Check(string& str) {
+bool Check(string* str) {
 	stack<char> stack;
 
-    for (char symb : str) {
+    for (char symb : *str) {
         if (symb == '(' or symb == '[' or symb == '{') {
             stack.push(symb); 
         }
@@ -32,7 +32,7 @@ bool Check(string& str) {
 
 int main() {
 	string text = "{[()]}";
-    if (Check(text)) {
+    if (Check(&text)) {
         cout << "Right" << endl;
     }
     else {
