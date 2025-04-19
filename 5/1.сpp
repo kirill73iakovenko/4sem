@@ -1,0 +1,33 @@
+#include <iostream>
+#include <thread>
+#include <vector>
+#include <mutex>
+
+using namespace std;
+
+
+
+void print( int num) {
+    
+    cout << "HelloWorld" << endl;
+    cout << "ID: " << this_thread::get_id() << endl;
+    cout << "Number of threads: " << num << endl;
+}
+
+int main() {
+    int num_threads = 8;
+    vector<thread> threads;
+
+    for (int i = 0; i < num_threads; ++i) {
+        threads.emplace_back(print, num_threads);
+    }
+
+    cout << "begin" << endl;
+    for (auto& thread : threads) {
+        thread.join();
+    }
+    cout << "end" << endl;
+    return 0;
+}
+
+//the output is not identical, because there are thread races.
